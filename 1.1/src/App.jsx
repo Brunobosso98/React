@@ -28,4 +28,4 @@ const Comprar = () => {
   );
 };
 
-export default Comprar;
+export default App;
