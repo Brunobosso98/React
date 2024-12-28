@@ -1,5 +1,3 @@
-// Organize os produtos como mostrado no vídeo
-// Mostre apenas produtos que forem mais caros que R$ 1500
 const produtos = [
   {
     id: 1,
@@ -25,12 +23,25 @@ const App = () => {
   return (
     <section>
       {produtos
-        .filter((produto) => Number(produto.preco.replace('R$ ', '') > 1500))
+        .filter((produto) => Number(produto.preco.replace('R$ ', '')) > 1500)
         .map((produto) => (
-          <div>
+          <div key={produto.id}>
             <h1>{produto.nome}</h1>
             <p>Preço: {produto.preco}</p>
-            <p>{produto.cores}</p>
+            <ul>
+              {produto.cores.map((cor, index) => (
+                <li
+                  key={index}
+                  style={{
+                    color: 'white',
+                    backgroundColor: cor,
+                    listStyle: 'none',
+                  }}
+                >
+                  {cor}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
     </section>
