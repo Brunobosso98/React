@@ -11,17 +11,28 @@
 //   );
 // };
 
-const App = () => {
-  function handleClick(event) {
-    console.log(event);
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
+import Form from './Form/Form.jsx';
+
+const Teste = () => {
+  const active = true;
+  if (active) {
+    return <p>Teste</p>;
+  } else {
+    return null;
   }
-  window.addEventListener('scroll', handleScroll);
+};
+
+const App = () => {
   return (
     <>
-      <button onClick={handleClick}>Clique aqui</button>
-      <button onClick={(event) => alert(event.target.innerText)}>
-        Clica pai
-      </button>
+      <div>
+        <Teste />
+        <Header />
+        <Form />
+        <Footer />
+      </div>
     </>
   );
 };
