@@ -12,7 +12,18 @@
 // };
 
 const App = () => {
-  return <></>;
+  function handleClick(event) {
+    console.log(event);
+  }
+  window.addEventListener('scroll', handleScroll);
+  return (
+    <>
+      <button onClick={handleClick}>Clique aqui</button>
+      <button onClick={(event) => alert(event.target.innerText)}>
+        Clica pai
+      </button>
+    </>
+  );
 };
 
 export default App;
