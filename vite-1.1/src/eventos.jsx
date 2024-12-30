@@ -11,30 +11,19 @@
 //   );
 // };
 
-jsx
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
-import Form from './Form/Form.jsx';
-
-const Teste = () => {
-  const active = true;
-  if (active) {
-    return <p>Teste</p>;
-  } else {
-    return null;
-  }
-};
-
 const App = () => {
+  function handleClick(event) {
+    console.log(event);
+  }
+  window.addEventListener('scroll', handleScroll);
   return (
     <>
-      <div>
-        <Teste />
-        <Header />
-        <Form />
-        <Footer />
-      </div>
+      <button onClick={handleClick}>Clique aqui</button>
+      <button onClick={(event) => alert(event.target.innerText)}>
+        Clica pai
+      </button>
     </>
   );
+};
 
 export default App;
