@@ -1,17 +1,25 @@
+// const Titulo = ({ cor, texto, children }) => {
+//   return (
+//     <h1 style={{ color: cor }}>
+//       {texto}, {children}
+//     </h1>
+//   );
+// };
+
+import Propriedades from './Propriedades/Form';
+
 // const App = () => {
-//   const produtos = ['notebook ', 'tablet ', 'iphone'];
 //   return (
 //     <>
-//       <ul>
-//         {produtos.map((produto) => (
-//           <li key={produto}>{produto}</li>
-//         ))}
-//       </ul>
+//       <Titulo cor="red" texto="Meu titulo 1">
+//         Isso é o children
+//         <p>Teste</p>
+//       </Titulo>
+//       <Titulo cor="blue" texto="Meu titulo 2" />
 //     </>
 //   );
 // };
 
-jsx
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Form from './Form/Form.jsx';
@@ -28,13 +36,8 @@ const Teste = () => {
 const App = () => {
   return (
     <>
-      <div>
-        <Teste />
-        <Header />
-        <Form />
-        <Footer />
-      </div>
+      <Propriedades />
     </>
   );
-
+};
 export default App;
