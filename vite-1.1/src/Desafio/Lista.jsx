@@ -4,10 +4,10 @@ const Lista = () => {
   return (
     <ul>
       <li>
-        <a href="../App.jsx">Home</a>
+        <a href="./">Home</a>
       </li>
       <li>
-        <a href="./">Produtos</a>
+        <a href="produtos">Produtos</a>
       </li>
     </ul>
   );
