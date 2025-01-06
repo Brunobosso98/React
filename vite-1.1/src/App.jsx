@@ -1,24 +1,42 @@
+// Os links abaixo puxam dados de um produto em formato JSON
+// https://ranekapi.origamid.dev/json/api/produto/tablet
+// https://ranekapi.origamid.dev/json/api/produto/smartphone
+// https://ranekapi.origamid.dev/json/api/produto/notebook
+// Crie uma interface com 3 botões, um para cada produto.
+// Ao clicar no botão faça um fetch a api e mostre os dados do produto na tela.
+// Mostre apenas um produto por vez
+// Mostre a mensagem carregando... enquanto o fetch é realizado
+
 import React from 'react';
-import ButtonModal from './ButtonModal';
-import Modal from './Modal';
+import Produtos from './Produtos';
 
 const App = () => {
-  // const [ativo, setAtivo] = React.useState(false);
-  // const [dados, setDados] = React.useState({ nome: 'Andre', idade: '30' });
+  const [dados, setDados] = React.useState(null);
+  const [loading, setLoading] = React.useState(null);
 
-  // function handleClick() {
-  //   setAtivo(!ativo);
-  //   setDados({ ...dados, faculdade: 'Possui Facul' });
-  // }
-  const [modal, setModal] = React.useState(false);
+  async function handleClick(event) {
+    setLoading(true);
+    const response = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`,
+    );
+    const json = await response.json();
+    setDados(json);
+    setLoading(false);
+  }
 
   return (
     <>
-      <Modal modal={modal} setModal={setModal} />
-      <ButtonModal setModal={setModal} />
-      {/* <p>{dados.nome}</p>
-      <p>{dados.idade}</p> <p>{dados.faculdade}</p>
-      <button onClick={handleClick}>{ativo ? 'Ativo' : 'Inativo'}</button> */}
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        notebook
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        smartphone
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        tablet
+      </button>
+      {loading && <p>Carregando...</p>}
+      {!loading && dados && <Produtos dados={dados} />}
     </>
   );
 };
