@@ -13,7 +13,7 @@
 
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import Form from './Form/Form.jsx';
+import Form from '../Form/Form.jsx';
 
 const Teste = () => {
   const active = true;
