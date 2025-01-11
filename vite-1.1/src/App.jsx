@@ -1,48 +1,29 @@
 import React from 'react';
 
-const App = () => {
-  // const [comentarios, setComentarios] = React.useState([]);
-  // const [input, setInput] = React.useState('');
-  // const inputElement = React.useRef();
-
-  // function handleClick() {
-  //   setComentarios([...comentarios, input]);
-  //   setInput('');
-  //   inputElement.current.focus();
-  // }
-
-  const [carrinho, setCarrinho] = React.useState(0);
-  const [notf, setNotf] = React.useState(null);
-  const timeoutRef = React.useRef();
-
-  function handleClick() {
-    setCarrinho(carrinho + 1);
-    setNotf('Item adicionado ao carrinho');
-
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      setNotf(null);
-    }, 2000);
+function operacaoLenta() {
+  let c;
+  for (let i = 0; i < 100000000; i++) {
+    c = i + i / 10;
   }
+  return c;
+}
+
+const App = () => {
+  const [contar, setContar] = React.useState(0);
+
+  // const valor = React.useMemo(() => {
+  //   const localItem = window.localStorage.getItem('produto');
+  //   console.log('aconteceu o memo');
+  //   return localItem;
+  // }, []);
+  const t1 = performance.now();
+  const valor = React.useMemo(() => operacaoLenta(), []);
+  console.log(valor);
+  console.log(performance.now() - t1);
 
   return (
     <>
-      {/* <ul>
-        {comentarios.map((comentario) => (
-          <li key={comentario}>{comentario}</li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        ref={inputElement}
-        value={input}
-        onChange={({ target }) => setInput(target.value)}
-      />
-      <br />
-      <button onClick={handleClick}>Enviar</button> */}
-
-      <p>{notf}</p>
-      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
+      <button onClick={() => setContar(contar + 1)}>{contar}</button>
     </>
   );
 };
