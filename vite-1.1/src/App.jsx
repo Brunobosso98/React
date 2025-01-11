@@ -1,8 +1,6 @@
 import React from 'react';
-import Produto from './Produto';
 
-const App = () => {
-  return <></>;
-};
+const App = () => {};
+return <></>;
 
 export default App;
