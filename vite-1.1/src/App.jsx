@@ -1,19 +1,30 @@
 import React from 'react';
-import useLocalStorage from './useLocalStorage.jsx';
 
-const App = () => {
-  const [produto, setProduto] = useLocalStorage('produto', '');
+const useFetch = () => {
+  const [data, setData] = React.useState(null);
+  const [error, setError] = React.useState(null);
+  const [loading, setLoading] = React.useState(null);
 
-  function handleClick({ target }) {
-    setProduto(target.innerText);
-  }
-  return (
-    <>
-      <p>Produto preferido: {produto}</p>
-      <button onClick={handleClick}>notebook</button>
-      <button onClick={handleClick}>smartphone</button>
-    </>
-  );
+  const request = React.useCallback(async (url, options) => {
+    let response;
+    let json;
+    try {
+      setError(null);
+      setLoading(true);
+      response = await fetch(url, options);
+      json = await response.json();
+      if (response.ok === false) throw new Error(json.message);
+    } catch (err) {
+      json = null;
+      setError(err.message);
+    } finally {
+      setData(json);
+      setLoading(false);
+      return { response, json };
+    }
+  }, []);
+
+  return { data, loading, error, request };
 };
 
-export default App;
+export default useFetch;
